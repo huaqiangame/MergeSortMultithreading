@@ -56,7 +56,7 @@ void merge_sort(struct block *my_data) {
     if (my_data->size > 1) {
         struct block left_block;
         struct block right_block;
-        left_block.size = my_data->size / 2;
+        left_block.size = my_data->size >> 2;
         left_block.first = my_data->first;
         right_block.size = left_block.size + (my_data->size % 2);
         right_block.first = my_data->first + left_block.size;
@@ -92,7 +92,9 @@ bool is_sorted(int data[], int size) {
 }
 
 int main(int argc, char *argv[]) {
-    cores = cores = sysconf(_SC_NPROCESSORS_ONLN);+9;
+    cores = sysconf(_SC_NPROCESSORS_ONLN);
+
+    printf("cpu numbers =%d",cores);
     long size;
     int pid, status; 
     if (argc < 2) {
